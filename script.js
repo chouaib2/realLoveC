@@ -361,7 +361,7 @@ if (bgMusic) {
 
             // Age that she will turn on the target birthday
             const turning = target.getFullYear() - birthYear;
-            elMeta.textContent = `Coumba aura ${turning} ans le ${target.toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' })}.`;
+            elMeta.textContent = `pretty damsel 💜 will be ${turning} years old on ${target.toLocaleDateString('fr-FR', {month: 'long',  day: '2-digit', year: 'numeric' })}.`;
         }
 
         tick();
