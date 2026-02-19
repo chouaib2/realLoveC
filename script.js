@@ -261,9 +261,9 @@ if (bgMusic) {
 
     function initSurprise() {
         const button = document.getElementById('surpriseButton');
-        const galleryImg = document.getElementById('galleryImage');
-        const galleryCaption = document.getElementById('galleryCaption');
-        if (!button || !galleryImg || !galleryCaption) return;
+        const overlay = document.getElementById('surpriseOverlay');
+        const surpriseImg = document.getElementById('surpriseImage');
+        if (!button || !overlay || !surpriseImg) return;
 
         let isPlaying = false;
 
@@ -272,38 +272,41 @@ if (bgMusic) {
             isPlaying = true;
 
             const sequence = [
-                { src: '/gallery/but1.jpg', caption: 'but 1' },
-                { src: '/gallery/but2.webp', caption: 'but 2' },
-                { src: '/gallery/but3.jpeg', caption: 'but 3' }
+                '/gallery/but1.jpg',
+                '/gallery/but2.webp',
+                '/gallery/but3.jpeg'
             ];
-
-            const original = {
-                src: galleryImg.src,
-                caption: galleryCaption.textContent || ''
-            };
 
             let i = 0;
 
             function showNext() {
                 const item = sequence[i];
                 if (!item) return;
-                galleryImg.src = item.src;
-                galleryCaption.textContent = item.caption;
+                surpriseImg.src = item;
                 i += 1;
                 if (i < sequence.length) {
                     window.setTimeout(showNext, 2000);
                 } else {
                     window.setTimeout(() => {
-                        galleryImg.src = original.src;
-                        galleryCaption.textContent = original.caption;
                         isPlaying = false;
-                    }, 2000);
+                        overlay.classList.remove('is-visible');
+                        overlay.setAttribute('aria-hidden', 'true');
+                    }, 2000); // keep last image for 2s
                 }
             }
 
+            overlay.classList.add('is-visible');
+            overlay.setAttribute('aria-hidden', 'false');
             showNext();
         }
+
         button.addEventListener('click', playButSequence);
+        overlay.addEventListener('click', () => {
+            if (!isPlaying) {
+                overlay.classList.remove('is-visible');
+                overlay.setAttribute('aria-hidden', 'true');
+            }
+        });
     }
 
     function initCountdown() {
