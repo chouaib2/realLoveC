@@ -2,14 +2,19 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     const galleryImages = [
-        { src: '/gallery/1.png', caption: '1 / 10' },
-        { src: '/gallery/2.png', caption: '2 / 10' },
-        { src: '/gallery/3.png', caption: '3 / 10' },
-        { src: '/gallery/4.png', caption: '4 / 10' },
-        { src: '/gallery/5.png', caption: '5 / 10' },
-        { src: '/gallery/6.png', caption: '6 / 10' },
-        { src: '/gallery/7.png', caption: '7 / 10' },
-        { src: '/gallery/8.png', caption: '8 / 10' },
+        { src: '/gallery/1.png', caption: '1 / 13' },
+        { src: '/gallery/2.png', caption: '2 / 13' },
+        { src: '/gallery/3.png', caption: '3 / 13' },
+        { src: '/gallery/4.png', caption: '4 / 13' },
+        { src: '/gallery/5.png', caption: '5 / 13' },
+        { src: '/gallery/6.png', caption: '6 / 13' },
+        { src: '/gallery/7.png', caption: '7 / 13' },
+        { src: '/gallery/8.png', caption: '8 / 13' },
+        { src: '/gallery/im11.jpg', caption: '9 / 13' },
+        { src: '/gallery/im12.jpg', caption: '10 / 13' },
+        { src: '/gallery/im13.jpg', caption: '11 / 13' },
+        { src: '/gallery/im14.jpg', caption: '12 / 13' },
+        { src: '/gallery/im15.jpg', caption: '13 / 13' },
     ];
 
     const musicPlaylist = [
