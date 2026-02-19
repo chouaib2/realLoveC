@@ -177,16 +177,24 @@ body {
 
 /* Hide main site until unlocked */
 body.locked .container {
-    display: none;
+    display: none !important;
+}
+
+body.locked .password-gate {
+    display: flex !important;
 }
 
 body.unlocked .password-gate {
-    display: none;
+    display: none !important;
 }
 
 /* Hide app UI until unlocked */
 body.locked .app-only {
-    display: none;
+    display: none !important;
+}
+
+body.unlocked .app-only {
+    display: block !important;
 }
 
 /* Navbar */
@@ -541,16 +549,163 @@ body.locked .app-only {
     box-shadow: 0 12px 28px rgba(91, 58, 165, 0.22);
 }
 
+@media (max-width: 768px) {
+    .navbar-inner {
+        flex-wrap: wrap;
+        padding: 0.5rem 0;
+    }
+
+    .brand {
+        width: 50px;
+        height: 50px;
+    }
+
+    .nav-items {
+        width: 100%;
+        justify-content: center;
+        gap: 0.35rem;
+    }
+
+    .nav-btn {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.9rem;
+    }
+
+    .container.app-only {
+        padding: 0.75rem 0.5rem 1.5rem;
+    }
+
+    .top-line {
+        font-size: 0.9rem;
+    }
+
+    .countdown {
+        padding: 0.75rem;
+    }
+
+    .countdown-title {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .cd-number {
+        font-size: 1.1rem;
+    }
+
+    .cd-label {
+        font-size: 0.7rem;
+    }
+
+    .view {
+        padding: 1rem;
+        border-radius: 1rem;
+    }
+
+    .view-title {
+        font-size: 1.25rem;
+    }
+
+    .view-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
 @media (max-width: 640px) {
     .gallery {
-        grid-template-columns: 40px 1fr 40px;
-        gap: 0.5rem;
+        grid-template-columns: 36px 1fr 36px;
+        gap: 0.4rem;
     }
+
+    .gallery-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 22px;
+    }
+
     .gallery-frame {
-        height: min(78vh, 560px);
+        height: min(70vh, 480px);
+        border-radius: 0.8rem;
     }
+
+    .gallery-image {
+        padding: 0.5rem;
+    }
+
+    .gallery-caption {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
     .countdown-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.4rem;
+    }
+
+    .cd-item {
+        padding: 0.5rem;
+        border-radius: 0.75rem;
+    }
+
+    .cd-number {
+        font-size: 0.95rem;
+    }
+
+    .cd-label {
+        font-size: 0.65rem;
+        margin-top: 0.1rem;
+    }
+
+    .notes-toolbar {
+        gap: 0.5rem;
+    }
+
+    .sender-pill {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.85rem;
+    }
+
+    .notes-history {
+        height: min(40vh, 340px);
+    }
+
+    .notes-form {
+        grid-template-columns: 1fr;
+    }
+
+    .notes-input,
+    .notes-send {
+        width: 100%;
+    }
+
+    .msg {
+        max-width: 85%;
+    }
+
+    .password-card {
+        padding: 1.5rem;
+    }
+
+    .password-title {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+    }
+
+    .password-row {
+        flex-direction: column;
+        gap: 0.6rem;
+    }
+
+    .password-input,
+    .password-btn {
+        width: 100%;
+    }
+
+    .password-input {
+        padding: 0.8rem;
+    }
+
+    .password-btn {
+        padding: 0.8rem;
     }
 }
 
