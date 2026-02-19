@@ -94,7 +94,7 @@ if (bgMusic) {
 
     function startRandomMusic() {
         currentTrackIndex = 0;
-        playNextTrack();
+        playCurrentTrack();
     }
 
     function initAfterUnlock() {
