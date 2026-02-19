@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just For Coumba 💕</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Alex+Brush&family=Allura&family=Poppins:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="locked">
+    <audio id="bgMusic"></audio>
+
+    <!-- Subtle Rolling Hearts Background -->
+    <div class="hearts-container" aria-hidden="true">
+        <div class="rolling-heart rolling-heart--1">💜</div>
+        <div class="rolling-heart rolling-heart--2">💜</div>
+    </div>
+
+    <!-- Password Gate (Homepage) -->
+    <div id="passwordGate" class="password-gate" role="dialog" aria-modal="true" aria-labelledby="passwordTitle">
+        <div class="password-card">
+            
+            <h1 id="passwordTitle" class="password-title">Site web privé de Coumba Dramé</h1>
+            <div class="password-row">
+                <input id="passwordInput" class="password-input" type="password" inputmode="text" autocomplete="off" placeholder="Mot de passe" />
+                <button id="passwordSubmit" class="password-btn" type="button">OK</button>
+            </div>
+            <p id="passwordError" class="password-error" aria-live="polite"></p>
+        </div>
+    </div>
+
+    <!-- App (after password) -->
+    <nav class="navbar app-only" aria-label="Main">
+        <div class="navbar-inner">
+            <div class="brand">
+                <img class="brand-logo" src="assets/psg.png" alt="PSG" width: 120px ;   height: auto;  />
+              <h3>PSG Babe</h3>
+              <h3 class= "logotext">PSG Babe</h3>
+            </div>
+            <div class="nav-items" role="tablist" aria-label="Options">
+                <button class="nav-btn is-active" type="button" data-view="gallery" role="tab" aria-selected="true">Galerie</button>
+                <button class="nav-btn" type="button" data-view="notes" role="tab" aria-selected="false">Notes</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container app-only" id="appRoot">
+        <section class="top-message">
+            <p class="top-line">une suite d'options en haut , choisis. X___coucou. J'ai mis ton équipe préférée 😏</p>
+            <div class="countdown">
+                <div class="countdown-title">Compte à rebours avant son anniversaire (19 septembre)</div>
+                <div class="countdown-grid" aria-label="Compte à rebours">
+                    <div class="cd-item"><div id="cdDays" class="cd-number">0</div><div class="cd-label">jours</div></div>
+                    <div class="cd-item"><div id="cdHours" class="cd-number">0</div><div class="cd-label">heures</div></div>
+                    <div class="cd-item"><div id="cdMinutes" class="cd-number">0</div><div class="cd-label">minutes</div></div>
+                    <div class="cd-item"><div id="cdSeconds" class="cd-number">0</div><div class="cd-label">secondes</div></div>
+                </div>
+                <div id="cdMeta" class="countdown-meta"></div>
+            </div>
+        </section>
+
+        <section id="view-gallery" class="view is-active" role="tabpanel" aria-label="Galerie">
+            <h2 class="view-title">Galerie</h2>
+            <p class="view-subtitle">Utilise les flèches pour voir la photo suivante / précédente.</p>
+            <div class="gallery">
+                <button class="gallery-arrow" id="galleryPrev" type="button" aria-label="Image précédente">‹</button>
+                <figure class="gallery-frame">
+                    <img id="galleryImage" class="gallery-image" alt="Image de la galerie" />
+                    <figcaption id="galleryCaption" class="gallery-caption"></figcaption>
+                </figure>
+                <button class="gallery-arrow" id="galleryNext" type="button" aria-label="Image suivante">›</button>
+            </div>
+        </section>
+
+        <section id="view-notes" class="view" role="tabpanel" aria-label="Notes">
+            <h2 class="view-title">Notes</h2>
+            <p class="view-subtitle">Envoie des messages ici — l'historique est sauvegardé.</p>
+
+            <div class="notes">
+                <div class="notes-toolbar">
+                    <label class="sender-pill">
+                        <span>Expéditeur</span>
+                        <select id="notesSender" class="sender-select">
+                                                      <option value="coumba">Coumba</option>
+
+                            <option value="Le C">Le C</option>
+                        </select>
+                    </label>
+                    <button id="notesClear" class="notes-clear" type="button">Effacer l'historique</button>
+                </div>
+
+                <div id="notesHistory" class="notes-history" aria-label="Message history"></div>
+
+                <form id="notesForm" class="notes-form">
+                    <input id="notesInput" class="notes-input" type="text" maxlength="500" placeholder="Écris un message…" autocomplete="off" />
+                    <button class="notes-send" type="submit">Envoyer</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>
