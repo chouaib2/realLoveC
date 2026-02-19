@@ -261,25 +261,49 @@ if (bgMusic) {
 
     function initSurprise() {
         const button = document.getElementById('surpriseButton');
-        const overlay = document.getElementById('surpriseOverlay');
-        if (!button || !overlay) return;
+        const galleryImg = document.getElementById('galleryImage');
+        const galleryCaption = document.getElementById('galleryCaption');
+        if (!button || !galleryImg || !galleryCaption) return;
 
-        let hideTimeout = null;
+        let isPlaying = false;
 
-        function hide() {
-            overlay.classList.remove('is-visible');
-            overlay.setAttribute('aria-hidden', 'true');
+        function playButSequence() {
+            if (isPlaying) return;
+            isPlaying = true;
+
+            const sequence = [
+                { src: '/gallery/but1.jpg', caption: 'but 1' },
+                { src: '/gallery/but2.webp', caption: 'but 2' },
+                { src: '/gallery/but3.jpeg', caption: 'but 3' }
+            ];
+
+            const original = {
+                src: galleryImg.src,
+                caption: galleryCaption.textContent || ''
+            };
+
+            let i = 0;
+
+            function showNext() {
+                const item = sequence[i];
+                if (!item) return;
+                galleryImg.src = item.src;
+                galleryCaption.textContent = item.caption;
+                i += 1;
+                if (i < sequence.length) {
+                    window.setTimeout(showNext, 2000);
+                } else {
+                    window.setTimeout(() => {
+                        galleryImg.src = original.src;
+                        galleryCaption.textContent = original.caption;
+                        isPlaying = false;
+                    }, 2000);
+                }
+            }
+
+            showNext();
         }
-
-        function show() {
-            overlay.classList.add('is-visible');
-            overlay.setAttribute('aria-hidden', 'false');
-            if (hideTimeout) window.clearTimeout(hideTimeout);
-            hideTimeout = window.setTimeout(hide, 3000);
-        }
-
-        button.addEventListener('click', show);
-        overlay.addEventListener('click', hide);
+        button.addEventListener('click', playButSequence);
     }
 
     function initCountdown() {

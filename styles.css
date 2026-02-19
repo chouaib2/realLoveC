@@ -305,40 +305,6 @@ body.unlocked .app-only {
     background: #ffffff;
 }
 
-.surprise-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 180ms ease;
-    z-index: 2500;
-}
-
-.surprise-overlay.is-visible {
-    opacity: 1;
-    pointer-events: auto;
-}
-
-.surprise-overlay-inner {
-    max-width: 340px;
-    width: 90%;
-    border-radius: 1.5rem;
-    overflow: hidden;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
-    background: #000;
-}
-
-.surprise-image {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
 .countdown {
     background: rgba(255, 255, 255, 0.16);
     border: 1px solid rgba(255, 255, 255, 0.18);
