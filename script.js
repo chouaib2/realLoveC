@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const musicPlaylist = [
         "/music/SpotiDownloader.com - Soft Notes, Strong Feelings - Lloyd Frontiny.mp3",
-        "/music/SpotiDownloader.com - African Queen - 2Baba.mp3"
+        "/music/SpotiDownloader.com - The Color Violet - Tory Lanez.mp3"
     ];
 
     // Password gate (homepage)
