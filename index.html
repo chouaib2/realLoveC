@@ -49,6 +49,7 @@
     <main class="container app-only" id="appRoot">
         <section class="top-message">
             <p class="top-line">une suite d'options en haut , choisis. X___coucou. J'ai mis ton équipe préférée 😏</p>
+            <button id="surpriseButton" class="surprise-btn app-only" type="button">appuie ce bouton</button>
             <div class="countdown">
                 <div class="countdown-title">Compte à rebours avant son anniversaire (19 septembre)</div>
                 <div class="countdown-grid" aria-label="Compte à rebours">
@@ -100,6 +101,12 @@
             </div>
         </section>
     </main>
+
+    <div id="surpriseOverlay" class="surprise-overlay" aria-hidden="true">
+        <div class="surprise-overlay-inner">
+            <img src="/jerry-heart.png" alt="Petit message pour toi" class="surprise-image" />
+        </div>
+    </div>
 
     <script type="module" src="script.js"></script>
 </body>

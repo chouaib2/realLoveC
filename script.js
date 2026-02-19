@@ -97,6 +97,7 @@ if (bgMusic) {
         initGallery();
         initNotes();
         initCountdown();
+        initSurprise();
         startRandomMusic();
     }
 
@@ -256,6 +257,29 @@ if (bgMusic) {
             saveMessages(items);
             render(items);
         });
+    }
+
+    function initSurprise() {
+        const button = document.getElementById('surpriseButton');
+        const overlay = document.getElementById('surpriseOverlay');
+        if (!button || !overlay) return;
+
+        let hideTimeout = null;
+
+        function hide() {
+            overlay.classList.remove('is-visible');
+            overlay.setAttribute('aria-hidden', 'true');
+        }
+
+        function show() {
+            overlay.classList.add('is-visible');
+            overlay.setAttribute('aria-hidden', 'false');
+            if (hideTimeout) window.clearTimeout(hideTimeout);
+            hideTimeout = window.setTimeout(hide, 3000);
+        }
+
+        button.addEventListener('click', show);
+        overlay.addEventListener('click', hide);
     }
 
     function initCountdown() {

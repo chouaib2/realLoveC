@@ -285,6 +285,60 @@ body.unlocked .app-only {
     letter-spacing: 0.2px;
 }
 
+.surprise-btn {
+    margin: 0.75rem 0 1rem;
+    border: none;
+    border-radius: 999px;
+    padding: 0.8rem 1.4rem;
+    cursor: pointer;
+    font-family: Bahnschrift, 'Segoe UI', Arial, sans-serif;
+    font-weight: 800;
+    color: #3f2a73;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.surprise-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 32px rgba(0, 0, 0, 0.3);
+    background: #ffffff;
+}
+
+.surprise-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 180ms ease;
+    z-index: 2500;
+}
+
+.surprise-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.surprise-overlay-inner {
+    max-width: 340px;
+    width: 90%;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    background: #000;
+}
+
+.surprise-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 .countdown {
     background: rgba(255, 255, 255, 0.16);
     border: 1px solid rgba(255, 255, 255, 0.18);
