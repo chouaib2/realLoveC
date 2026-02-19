@@ -1,11 +1,6 @@
 // Minimal JS: password gate + random music + gallery + notes + countdown
-import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.43.5/+esm';
 
 document.addEventListener('DOMContentLoaded', function() {
-    const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
-    const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-    const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
     const galleryImages = [
         { src: 'assets/gallery/1.png', caption: '1 / 10' },
         { src: 'assets/gallery/2.png', caption: '2 / 10' },
@@ -167,7 +162,7 @@ if (bgMusic) {
         render();
     }
 
-    async function initNotes() {
+    function initNotes() {
         const historyEl = document.getElementById('notesHistory');
         const form = document.getElementById('notesForm');
         const input = document.getElementById('notesInput');
@@ -175,24 +170,27 @@ if (bgMusic) {
         const clearBtn = document.getElementById('notesClear');
         if (!historyEl || !form || !input || !sender || !clearBtn) return;
 
+        const STORAGE_KEY = 'psg-notes-v1';
         let items = [];
 
-        async function loadMessages() {
+        function loadMessages() {
             try {
-                const { data, error } = await supabase
-                    .from('messages')
-                    .select('*')
-                    .order('created_at', { ascending: true });
-
-                if (error) {
-                    console.error('Error loading messages:', error);
-                    return [];
-                }
-
-                return data || [];
+                const raw = window.localStorage.getItem(STORAGE_KEY);
+                if (!raw) return [];
+                const parsed = JSON.parse(raw);
+                if (!Array.isArray(parsed)) return [];
+                return parsed;
             } catch (err) {
-                console.error('Error loading messages:', err);
+                console.error('Error loading messages from localStorage:', err);
                 return [];
+            }
+        }
+
+        function saveMessages(messages) {
+            try {
+                window.localStorage.setItem(STORAGE_KEY, JSON.stringify(messages));
+            } catch (err) {
+                console.error('Error saving messages to localStorage:', err);
             }
         }
 
@@ -227,74 +225,38 @@ if (bgMusic) {
             }
             historyEl.scrollTop = historyEl.scrollHeight;
         }
-
-        items = await loadMessages();
+        items = loadMessages();
         render(items);
 
-        form.addEventListener('submit', async (e) => {
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
             const text = (input.value || '').trim();
             if (!text) return;
 
             input.disabled = true;
 
-            try {
-                const { data, error } = await supabase
-                    .from('messages')
-                    .insert({
-                        sender: sender.value === 'coumba' ? 'coumba' : 'Le C',
-                        text: text
-                    })
-                    .select();
+            const message = {
+                id: crypto.randomUUID ? crypto.randomUUID() : String(Date.now()),
+                sender: sender.value === 'coumba' ? 'coumba' : 'Le C',
+                text: text,
+                created_at: new Date().toISOString()
+            };
 
-                if (error) {
-                    console.error('Error sending message:', error);
-                    return;
-                }
-
-                items = await loadMessages();
-                render(items);
-                input.value = '';
-                input.focus();
-            } catch (err) {
-                console.error('Error sending message:', err);
-            } finally {
-                input.disabled = false;
-            }
+            items.push(message);
+            saveMessages(items);
+            render(items);
+            input.value = '';
+            input.focus();
+            input.disabled = false;
         });
 
-        clearBtn.addEventListener('click', async () => {
+        clearBtn.addEventListener('click', () => {
             if (!confirm('Êtes-vous sûr de vouloir effacer tout l\'historique?')) return;
 
-            try {
-                const { error } = await supabase
-                    .from('messages')
-                    .delete()
-                    .neq('id', '00000000-0000-0000-0000-000000000000');
-
-                if (error) {
-                    console.error('Error clearing messages:', error);
-                    return;
-                }
-
-                items = [];
-                render(items);
-            } catch (err) {
-                console.error('Error clearing messages:', err);
-            }
+            items = [];
+            saveMessages(items);
+            render(items);
         });
-
-        const channel = supabase
-            .channel('messages')
-            .on(
-                'postgres_changes',
-                { event: '*', schema: 'public', table: 'messages' },
-                async () => {
-                    items = await loadMessages();
-                    render(items);
-                }
-            )
-            .subscribe();
     }
 
     function initCountdown() {
