@@ -2,20 +2,19 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     const galleryImages = [
-        { src: 'assets/gallery/1.png', caption: '1 / 10' },
-        { src: 'assets/gallery/2.png', caption: '2 / 10' },
-        { src: 'assets/gallery/3.png', caption: '3 / 10' },
-        { src: 'assets/gallery/4.png', caption: '4 / 10' },
-        { src: 'assets/gallery/5.png', caption: '5 / 10' },
-        { src: 'assets/gallery/6.png', caption: '6 / 10' },
-        { src: 'assets/gallery/7.png', caption: '7 / 10' },
-        { src: 'assets/gallery/8.png', caption: '8 / 10' },
-        
+        { src: '/gallery/1.png', caption: '1 / 10' },
+        { src: '/gallery/2.png', caption: '2 / 10' },
+        { src: '/gallery/3.png', caption: '3 / 10' },
+        { src: '/gallery/4.png', caption: '4 / 10' },
+        { src: '/gallery/5.png', caption: '5 / 10' },
+        { src: '/gallery/6.png', caption: '6 / 10' },
+        { src: '/gallery/7.png', caption: '7 / 10' },
+        { src: '/gallery/8.png', caption: '8 / 10' },
     ];
 
     const musicPlaylist = [
-        "assets/music/SpotiDownloader.com - Soft Notes, Strong Feelings - Lloyd Frontiny.mp3",
-        "assets/music/SpotiDownloader.com - African Queen - 2Baba.mp3"
+        "/music/SpotiDownloader.com - Soft Notes, Strong Feelings - Lloyd Frontiny.mp3",
+        "/music/SpotiDownloader.com - African Queen - 2Baba.mp3"
     ];
 
     // Password gate (homepage)
